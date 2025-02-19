@@ -1,0 +1,7 @@
+matplotlib
+seaborn
+ucimlrepo
+scikit-learn
+imblearn
+mlxtend
+xgboost
