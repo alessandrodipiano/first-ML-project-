@@ -1,1 +1,152 @@
-Predicting Hospital Readmission in Diabetic PatientsA Machine Learning Study on Large-Scale Clinical DataAbstractHospital readmissions represent a critical challenge for healthcare systems, reflecting both patient outcomes and economic burden. This project investigates the prediction of readmission for diabetic patients using a large real-world clinical dataset spanning multiple hospitals and years. The work focuses on constructing a rigorous end-to-end Machine Learning pipeline capable of handling noisy, heterogeneous medical data.Problem StatementGiven patient records collected during hospital stays, the objective is to predict whether a patient will be readmitted after discharge.The original dataset defines three outcomes:No readmissionReadmission within 30 daysReadmission after 30 daysDue to severe class imbalance and the clinical utility of identifying any return to care, the problem is reformulated as a binary classification task:$$y = \begin{cases} 1 & \text{if readmitted} \\ 0 & \text{otherwise} \end{cases}$$Dataset OverviewSource: Health Facts Database (Cerner Corporation)Time Span: 1999–2008Scope: ~130 U.S. hospital institutionsPopulation: Patients diagnosed with diabetesFeatures: Demographics, diagnoses (ICD-9), procedures, medications, and admission/discharge metadata.Clinical Data Characteristics:Extensive missingness (stochastic and systematic).High-cardinality categorical variables (e.g., thousands of diagnostic codes).Administrative coding artifacts and measurement inconsistencies.Methodology1. Exploratory Data Analysis (EDA)Distribution analysis of demographic variables.Examination of outcome imbalance ($y=1$ vs $y=0$).Identification of missingness patterns (MCAR, MAR, MNAR).Statistical association tests (e.g., Chi-squared for categorical features).2. Data Preprocessing & CleaningFiltering: Removal of variables with $>40\%$ missing data.Deduplication: Elimination of constant or non-informative features.Standardization: Normalizing categorical labels and handling invalid entries.3. Feature EngineeringNumerical Transformation: Conversion of age ranges to numerical midpoints.Dimensionality Reduction: Aggregation of ICD-9 diagnosis codes into broader clinical groups (e.g., Circulatory, Digestive, Metabolic).Mapping: Re-categorizing admission and discharge IDs into meaningful clinical tiers (e.g., Emergency vs. Elective).4. Imputation StrategyStructured imputation for missing values.KNN-based Imputation for selected physiological variables.Explicit encoding of "Missing" as a unique category where clinically relevant.Implementation StackThe project is implemented in Python using the standard scientific computing ecosystem:NumPy – Linear algebra and numerical operations.Pandas – High-performance data manipulation.Matplotlib / Seaborn – Statistical data visualization.Scikit-learn – Preprocessing, feature selection, and model evaluation.Key ChallengesClass Imbalance: Significant disparity between readmitted and non-readmitted classes.Sparsity: High-dimensional feature spaces resulting from One-Hot Encoding of medical codes.Confounding Variables: Distinguishing between clinical necessity and administrative bias.
+# Predicting Hospital Readmission in Diabetic Patients
+Machine Learning on Large-Scale Clinical Data
+
+## Overview
+
+Hospital readmissions are a major indicator of healthcare quality and cost. This project applies supervised Machine Learning techniques to predict whether diabetic patients will be readmitted after discharge, using a large real-world clinical dataset collected across multiple hospitals.
+
+Due to severe class imbalance in the original dataset, the task is formulated as a binary classification problem:
+
+- 0 — No readmission  
+- 1 — Readmission (within or after 30 days)
+
+The project demonstrates a complete data science workflow, from raw data exploration to the construction of a model-ready dataset.
+
+---
+
+## Dataset
+
+Source: Health Facts Database (Cerner Corporation)
+
+- Time span: 1999–2008  
+- Institutions: ~130 U.S. hospitals  
+- Population: Patients diagnosed with diabetes  
+- Data type: Electronic health records  
+
+The dataset includes:
+
+- Demographic information  
+- Admission and discharge details  
+- Diagnoses and procedures  
+- Medication data  
+
+As typical for clinical data, it contains substantial noise, missing values, and heterogeneous feature types.
+
+---
+
+## Methodology
+
+### Exploratory Data Analysis
+
+- Distribution analysis of demographic variables  
+- Examination of class imbalance  
+- Detection of missing values and anomalies  
+- Analysis of associations between features and target  
+
+---
+
+### Data Cleaning
+
+Significant preprocessing was required due to data complexity:
+
+- Removal of variables with excessive missing values  
+- Elimination of constant or non-informative features  
+- Standardization of categorical values  
+- Handling of unknown or invalid entries  
+
+---
+
+### Feature Engineering
+
+- Conversion of age intervals to numeric midpoints  
+- Mapping admission and discharge codes into meaningful categories  
+- Aggregation of ICD-9 diagnosis codes into broader groups  
+- Reduction of high-cardinality categorical variables  
+
+---
+
+### Missing Data Handling
+
+- Structured imputation strategy  
+- KNN-based imputation for selected variables  
+- Preservation of clinically meaningful information  
+
+---
+
+### Dataset Construction
+
+The final dataset was prepared for supervised learning through:
+
+- Encoding of categorical variables  
+- Feature selection  
+- Target transformation  
+- Train/test readiness  
+
+---
+
+## Implementation
+
+The project is implemented in Python using the scientific computing ecosystem:
+
+- NumPy — numerical computation  
+- Pandas — data manipulation  
+- Matplotlib / Seaborn — visualization  
+- Scikit-learn — preprocessing and machine learning utilities  
+
+The notebook documents a reproducible pipeline from raw data to model-ready features.
+
+---
+
+## Key Challenges
+
+Working with real healthcare data introduces several challenges:
+
+- Severe class imbalance  
+- Extensive missing data  
+- Complex diagnostic coding systems  
+- High-cardinality categorical features  
+- Heterogeneous data types  
+
+
+---
+
+### Running the Project
+
+Clone the repository:
+
+git clone https://github.com/alessandrodipiano/first-ML-project-
+
+Navigate to the project directory:
+
+cd first-ML-project-
+
+Launch Jupyter Notebook:
+
+jupyter notebook "Notebook 1.ipynb"
+
+---
+
+## Repository Structure
+
+Notebook 1.ipynb    End-to-end analysis and preprocessing pipeline  
+README.md           Project documentation  
+
+---
+
+## Future Work
+
+Possible extensions include:
+
+- Training and comparison of classification models  
+- Advanced techniques for handling class imbalance  
+- Hyperparameter optimization  
+- Model interpretability methods (e.g., SHAP, LIME)  
+- Deployment as a clinical decision-support tool  
+
+---
+
+## Author
+
+Alessandro Di Piano  
+Bachelor’s student in Artificial Intelligence
+
